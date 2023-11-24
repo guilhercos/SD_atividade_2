@@ -1,28 +1,27 @@
-let arrayComments = []
+const {comment: commentModel} = require('../models/comment')
 
 async function create (req, res){
-  const {id, content, autor, data} = req.body
-  const comment = {
-    id,
-    content,
-    autor,
-    data
+  const {content, autor, data} = req.body
+  try{    
+    new commentModel({
+      content,
+      autor,
+      data
+    }).save().then(res.json('criou comentário'))
+  } catch(error){
+    console.log(error)
   }
-  arrayComments.push(comment)
-  res.json(comment)
 }
+
 async function commentAll (req, res){
-  res.json(arrayComments)
+  const comments = await commentModel.find()
+  res.json(comments)
 }
+
 async function deleteComment (req, res){
   const id = req.params.id
-  const newArray = arrayComments.filter((comment) => {
-    if(comment.id != id){
-      return comment
-    }
-  })
-  arrayComments = newArray
-  res.json(newArray)
+  const removeComment = await commentModel.deleteOne({_id: id})
+  res.json(`foi deletado o comentário do id ${id}`)
 }
 
 module.exports = {create, commentAll, deleteComment}

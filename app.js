@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
 const bookController = require('./controllers/commentController')
+const db = require('./database/db')
 
 app.use(express.json())
+db.ConnectMongoDB()
 
 app.post('/criar', (req, res) => bookController.create(req, res))
 app.get('/comentarios', (req, res) => bookController.commentAll(req, res))
