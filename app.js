@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-const bookController = require('./controllers/commentController')
-const db = require('./database/db')
+const bookController = require('./src/controllers/commentController')
+const db = require('./src/database/db')
 
 app.use(express.json())
 db.ConnectMongoDB()
