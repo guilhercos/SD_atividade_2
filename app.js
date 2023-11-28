@@ -3,17 +3,16 @@ const app = express();
 const bookController = require("./src/controllers/commentController");
 const db = require("./src/database/db");
 const { handlebars, engine } = require("express-handlebars");
-const path = require('path');
+const path = require("path");
 
 db.ConnectMongoDB();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname + "src/views")));
-
 
 // Handlebars
 app.engine("handlebars", engine({ layout: false }));
+app.set("views", __dirname + "/src/views");
 app.set("view engine", "handlebars");
 
 app.get("/", (req, res) => bookController.renderMain(req, res));
