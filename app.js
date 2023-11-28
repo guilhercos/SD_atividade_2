@@ -1,15 +1,14 @@
-const express = require('express')
-const app = express()
-const bookController = require('./src/controllers/commentController')
-const db = require('./src/database/db')
+const express = require("express");
+const app = express();
+const db = require("./src/database/db");
+const routes = require("./src/routes/routes");
 
-app.use(express.json())
-db.ConnectMongoDB()
+app.use(express.json());
 
-app.post('/criar', (req, res) => bookController.create(req, res))
-app.get('/comentarios', (req, res) => bookController.commentAll(req, res))
-app.delete('/deletar/:id', (req, res) => bookController.deleteComment(req, res))
+db.ConnectMongoDB();
+
+app.use(routes);
 
 app.listen(3000, () => {
-  console.log('servidor rodando porta 3000')
-})
+  console.log("servidor rodando porta 3000");
+});
