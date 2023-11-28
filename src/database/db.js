@@ -3,13 +3,11 @@ mongoose.set("strictQuery", true);
 
 const connectMongoDB = () => {
   mongoose
-    .connect(
-      `mongodb://127.0.0.1:27017/mobile`
-    )
+    .connect(`mongodb://127.0.0.1:27017/booksApi`)
     .then(() => {
       console.log("Conectou ao banco!");
     })
     .catch((err) => console.log(err));
-}
+};
 
-module.exports = {ConnectMongoDB: connectMongoDB}
+module.exports = { ConnectMongoDB: connectMongoDB };
