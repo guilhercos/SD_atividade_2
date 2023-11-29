@@ -7,6 +7,7 @@ const routes = require("./src/routes/routes");
 
 db.ConnectMongoDB();
 
+app.use(express.static('./src'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
