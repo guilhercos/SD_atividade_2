@@ -28,10 +28,18 @@ async function deleteComment(req, res) {
 
 async function renderMain(req, res) {
   try {
-    res.render('partials/initial',({layout:'main'}));
+    res.render("partials/initial", { layout: "main" });
   } catch (err) {
     console.log("ERRO: " + err);
   }
 }
 
-module.exports = { create, commentAll, deleteComment, renderMain };
+async function renderBooks(req, res) {
+  try {
+    res.render("partials/books", { layout: "main" });
+  } catch (err) {
+    console.log("ERRO: " + err);
+  }
+}
+
+module.exports = { create, commentAll, deleteComment, renderMain, renderBooks };
