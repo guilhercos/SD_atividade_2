@@ -1,0 +1,11 @@
+h1{
+    display: flex;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 70px;
+    font-weight: 500;
+    }
+#buttonDiv{
+    display: flex;
+    justify-content: center;
+}
