@@ -9,3 +9,24 @@ h1{
     display: flex;
     justify-content: center;
 }
+#input{
+    display: flex;
+    justify-content: center;
+    box-sizing: content-box;
+}
+input:focus{
+    outline: none;
+}
+input{
+    border-radius: 8px;
+    border: 1px solid rgba(235, 235, 235, 1);
+    background-color: rgba(243, 243, 243, 1);
+    width: 386px;
+    height: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: rgba(103, 103, 103, 1);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 19.12px;
+}
