@@ -5,6 +5,8 @@ const bookController = require("../controllers/commentController");
 
 router.get("/", (req, res) => bookController.renderMain(req, res));
 
+router.post("/", (req, res) => bookController.renderBooks(req, res));
+
 router.post("/criar", (req, res) => bookController.create(req, res));
 
 router.get("/comentarios", (req, res) => bookController.commentAll(req, res));
