@@ -22,24 +22,8 @@ async function commentAll(req, res) {
 
 async function deleteComment(req, res) {
   const id = req.params.id;
-  const removeComment = await commentModel.deleteOne({ _id: id });
+  await commentModel.deleteOne({ _id: id });
   res.json(`foi deletado o comentário do id ${id}`);
 }
 
-async function renderMain(req, res) {
-  try {
-    res.render("partials/initial", { layout: "main" });
-  } catch (err) {
-    console.log("ERRO: " + err);
-  }
-}
-
-async function renderBooks(req, res) {
-  try {
-    res.render("partials/books", { layout: "main" });
-  } catch (err) {
-    console.log("ERRO: " + err);
-  }
-}
-
-module.exports = { create, commentAll, deleteComment, renderMain, renderBooks };
+module.exports = { create, commentAll, deleteComment };
