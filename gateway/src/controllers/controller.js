@@ -15,6 +15,10 @@ async function renderBooks(req, res) {
     console.log("ERRO: " + err);
   }
 }
+ 
+async function findBook(value){
+  console.log(value);
+}
 
 async function signin(req, res) {
   const { credential } = req.body;
