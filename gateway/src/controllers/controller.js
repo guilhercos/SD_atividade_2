@@ -14,4 +14,8 @@ async function renderBooks(req, res) {
   }
 }
 
+async function signin(req, res) {
+  const { credential } = req.body;
+}
+
 module.exports = { renderMain, renderBooks };
