@@ -3,8 +3,26 @@ import { OAuth2Client } from "google-auth-library";
 
 async function signin(req, res) {
   const { credential } = req.body;
-}
 
+  const user = await userGoogle(credential);
+
+  try {
+    const token = jwt.sign(
+      {
+        id: user.sub,
+        expiresIn: 3600,
+      },
+      "secret"
+    );
+    const tokenBearer = `Bearrer ${token}`;
+
+    res.cookie("acess_token", tokenBearer, { maxAge: 3600000 });
+    res.set("Authorization", tokenBearer);
+  } catch (error) {
+    res.status(422).json("autenticação falhou");
+  }
+  return res.json({ user, token });
+}
 async function userGoogle(token) {
   const user = new OAuth2Client();
 
