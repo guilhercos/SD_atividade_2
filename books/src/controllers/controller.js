@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-import { OAuth2Client } from "google-auth-library";
+const { OAuth2Client } = require("google-auth-library");
 
 async function signin(req, res) {
   const { credential } = req.body;
@@ -23,6 +23,7 @@ async function signin(req, res) {
   }
   return res.json({ user, token });
 }
+
 async function userGoogle(token) {
   const user = new OAuth2Client();
 
@@ -34,3 +35,5 @@ async function userGoogle(token) {
   const userInformation = ticket.getPayload();
   return userInformation;
 }
+
+module.exports = { signin };

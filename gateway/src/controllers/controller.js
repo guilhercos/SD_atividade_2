@@ -19,7 +19,9 @@ async function renderBooks(req, res) {
 async function signin(req, res) {
   const { credential } = req.body;
 
-  const getAxios = axios.post("http://localhost:6000");
+  const getAxios = axios.post("http://localhost:6000/book/signin", {
+    credential,
+  });
   const token = getAxios.data.token;
   const user = getAxios.data.user;
 
@@ -30,4 +32,4 @@ async function signin(req, res) {
   res.set("Authorization", tokenBearer);
 }
 
-module.exports = { renderMain, renderBooks };
+module.exports = { renderMain, renderBooks, signin };
