@@ -14,4 +14,4 @@ async function renderBooks(req, res) {
   }
 }
 
-module.exports = { create, commentAll, deleteComment, renderMain, renderBooks };
+module.exports = { renderMain, renderBooks };
