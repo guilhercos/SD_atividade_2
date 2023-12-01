@@ -3,7 +3,7 @@ const app = express();
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const routes = require("./src/routes");
+const routes = require("./src/routes/routes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

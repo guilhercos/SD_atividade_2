@@ -18,10 +18,10 @@ async function signin(req, res) {
 
     res.cookie("acess_token", tokenBearer, { maxAge: 3600000 });
     res.set("Authorization", tokenBearer);
+    return res.json({ user, token });
   } catch (error) {
     res.status(422).json("autenticação falhou");
   }
-  return res.json({ user, token });
 }
 
 async function userGoogle(token) {
