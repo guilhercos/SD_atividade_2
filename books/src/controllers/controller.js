@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
+const axios = require("axios");
 
 async function signin(req, res) {
   const { credential } = req.body;
@@ -57,7 +58,18 @@ async function isAuthenticated(req, res, next) {
 }
 
 async function searchBook(req, res) {
-  const { search } = req.body;
+  try {
+    const { search } = req.body;
+    const key = "AIzaSyBoyfcflN2j42ZWV11hUOqnJz7B0PVqu1Q";
+    const maxResult = 8;
+    const axiosBooks = await axios.get(
+      `https://www.googleapis.com/books/v1/volumes?q=${search}&${key}&maxResults=${maxResult}`
+    );
+    const books = axiosBooks.data;
+    res.json({ books });
+  } catch (err) {
+    res.send(err);
+  }
 }
 
 module.exports = { signin, isAuthenticated, searchBook };
