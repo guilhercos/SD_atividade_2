@@ -9,6 +9,14 @@ async function renderMain(req, res) {
   }
 }
 
+async function renderBooks(req, res) {
+  try {
+    res.render("partials/books", { layout: "main" });
+  } catch (err) {
+    console.log("ERRO: " + err);
+  }
+}
+
 async function signin(req, res) {
   try {
     const { credential } = req.body;
@@ -25,7 +33,7 @@ async function signin(req, res) {
 
     res.cookie("acess_token", tokenBearer, { maxAge: 3600000 });
     res.set("Authorization", tokenBearer);
-    res.render("partials/books", { layout: "main" });
+    res.redirect("/book");
   } catch (err) {
     console.log("ERRO: " + err);
   }
@@ -41,7 +49,7 @@ async function isAuthenticated(req, res, next) {
   if (acess_token && req.session.user) {
     try {
       const [, token] = acess_token.split(" ");
-      await jwt.verify(token, "sdaslajvlkvmxv2665f4s56df");
+      await jwt.verify(token, "secret");
 
       return next();
     } catch (err) {
@@ -54,4 +62,4 @@ async function isAuthenticated(req, res, next) {
   }
 }
 
-module.exports = { renderMain, signin };
+module.exports = { renderMain, renderBooks, signin, isAuthenticated };
