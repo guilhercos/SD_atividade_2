@@ -4,6 +4,8 @@ const { handlebars, engine } = require("express-handlebars");
 const routes = require("./src/routes/routes");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const db = require("../comments/src/database/db");
 
 app.use(express.static("./src"));
 app.use(express.urlencoded({ extended: true }));
@@ -18,6 +20,14 @@ app.use(
     cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 },
   })
 );
+app.use(
+  cors({
+    credentials: true,
+  })
+);
+
+// Database connection
+db.ConnectMongoDB();
 
 // Handlebars
 app.engine("handlebars", engine({ layout: false }));
