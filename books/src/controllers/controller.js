@@ -56,4 +56,8 @@ async function isAuthenticated(req, res, next) {
   }
 }
 
-module.exports = { signin, isAuthenticated };
+async function searchBook(req, res) {
+  const { search } = req.body;
+}
+
+module.exports = { signin, isAuthenticated, searchBook };

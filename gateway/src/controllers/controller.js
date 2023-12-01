@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
 
@@ -21,7 +22,7 @@ async function signin(req, res) {
   try {
     const { credential } = req.body;
 
-    const getAxios = await axios.post("http://localhost:6000/book/login", {
+    const getAxios = await axios.post("http://localhost:6000/apiBook/login", {
       credential,
     });
 
@@ -62,4 +63,17 @@ async function isAuthenticated(req, res, next) {
   }
 }
 
-module.exports = { renderMain, renderBooks, signin, isAuthenticated };
+async function searchBook(req, res) {
+  const { search } = req.body;
+
+  const book = axios.post("localhost:6000/apiBook/search", { search });
+  res.json(book.data);
+}
+
+module.exports = {
+  renderMain,
+  renderBooks,
+  signin,
+  isAuthenticated,
+  searchBook,
+};

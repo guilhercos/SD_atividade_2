@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/controller");
 
-router.post("/book/login", (req, res) => controller.signin(req, res));
+router.post("/apiBook/login", (req, res) => controller.signin(req, res));
+router.post("apiBook/search", (req, res) => controller.searchBook(req, res));
 
 module.exports = router;
