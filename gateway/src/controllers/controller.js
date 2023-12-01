@@ -37,5 +37,9 @@ async function signin(req, res) {
     console.log("ERRO: " + err);
   }
 }
+ 
+async function findBook(value){
+  console.log(value);
+}
 
 module.exports = { renderMain, signin };
