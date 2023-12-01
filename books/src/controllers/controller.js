@@ -37,4 +37,23 @@ async function userGoogle(token) {
   return userInformation;
 }
 
-module.exports = { signin };
+async function isAuthenticated(req, res, next) {
+  const { acess_token } = req.cookies;
+
+  if (acess_token && req.session.user) {
+    try {
+      const [, token] = acess_token.split(" ");
+      await jwt.verify(token, "secret");
+
+      return next();
+    } catch (err) {
+      console.log(err);
+      res.redirect("/");
+    }
+  } else {
+    req.session.user = null;
+    res.redirect("/");
+  }
+}
+
+module.exports = { signin, isAuthenticated };
