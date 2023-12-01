@@ -15,6 +15,7 @@ async function signin(req, res) {
       "secret"
     );
     const tokenBearer = `Bearrer ${token}`;
+    req.session.user = user;
 
     res.cookie("acess_token", tokenBearer, { maxAge: 3600000 });
     res.set("Authorization", tokenBearer);
