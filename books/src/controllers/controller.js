@@ -60,12 +60,14 @@ async function isAuthenticated(req, res, next) {
 async function searchBook(req, res) {
   try {
     const { search } = req.body;
+
     const key = "AIzaSyBoyfcflN2j42ZWV11hUOqnJz7B0PVqu1Q";
     const maxResult = 8;
     const axiosBooks = await axios.get(
       `https://www.googleapis.com/books/v1/volumes?q=${search}&${key}&maxResults=${maxResult}`
     );
-    const books = axiosBooks.data;
+    const books = axiosBooks.data.items;
+
     res.json({ books });
   } catch (err) {
     res.send(err);

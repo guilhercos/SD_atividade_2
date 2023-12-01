@@ -7,8 +7,6 @@ router.post("/login", (req, res) => controller.signin(req, res));
 router.get("/book", controller.isAuthenticated, (req, res) =>
   controller.renderBooks(req, res)
 );
-router.post("/book", controller.isAuthenticated, (req, res) => {
-  controller.searchBook;
-});
+router.post("/book", (req, res) => controller.searchBook(req, res));
 
 module.exports = router;

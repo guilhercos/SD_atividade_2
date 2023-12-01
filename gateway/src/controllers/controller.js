@@ -1,4 +1,3 @@
-const { default: axios } = require("axios");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
 
@@ -66,7 +65,10 @@ async function isAuthenticated(req, res, next) {
 async function searchBook(req, res) {
   const { search } = req.body;
 
-  const book = axios.post("localhost:6000/apiBook/search", { search });
+  const book = await axios.post("http://localhost:6000/apiBook/search", {
+    search,
+  });
+
   res.json(book.data);
 }
 

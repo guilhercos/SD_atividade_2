@@ -3,6 +3,6 @@ const router = express.Router();
 const controller = require("../controllers/controller");
 
 router.post("/apiBook/login", (req, res) => controller.signin(req, res));
-router.post("apiBook/search", (req, res) => controller.searchBook(req, res));
+router.post("/apiBook/search", (req, res) => controller.searchBook(req, res));
 
 module.exports = router;
