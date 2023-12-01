@@ -1,12 +1,20 @@
 const { comment: commentModel } = require("../models/comment");
 
 async function create(req, res) {
-  const { content, autor, data } = req.body;
+  const { newComment } = req.body;
+
+  const data = new Date();
+  const day = data.getDate();
+  const month = data.getMonth() + 1;
+  const year = data.getFullYear();
+  const fullData = `${day}/${month}/${year}`;
+  console.log(fullData);
   try {
     new commentModel({
-      content,
-      autor,
-      data,
+      bookId: newComment.bookId,
+      content: newComment.content,
+      user: newComment.user,
+      date: fullData,
     })
       .save()
       .then(res.json("criou comentário"));

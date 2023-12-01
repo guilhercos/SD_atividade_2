@@ -8,5 +8,6 @@ router.get("/book", controller.isAuthenticated, (req, res) =>
   controller.renderBooks(req, res)
 );
 router.post("/book", (req, res) => controller.searchBook(req, res));
+router.post("/createComment", (req, res) => controller.createComment(req, res));
 
 module.exports = router;

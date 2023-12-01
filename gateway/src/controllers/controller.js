@@ -72,10 +72,31 @@ async function searchBook(req, res) {
   res.json(book.data);
 }
 
+async function createComment(req, res) {
+  const { content, bookId } = req.body;
+
+  const user = req.session.user;
+
+  const newComment = {
+    bookId,
+    user,
+    content,
+  };
+
+  const axiosComment = await axios.post(
+    "http://localhost:5000/apiComment/create",
+    {
+      newComment,
+    }
+  );
+  res.json(axiosComment.data);
+}
+
 module.exports = {
   renderMain,
   renderBooks,
   signin,
   isAuthenticated,
   searchBook,
+  createComment,
 };
