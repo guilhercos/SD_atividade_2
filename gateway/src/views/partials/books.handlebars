@@ -1,5 +1,22 @@
 {{>title}}
-<script src="../../controllers/controller.js"></script>
+<script src="../../controllers/controller.js">
+</script>
 <div id="input">
     <input type="search" oninput={findBook(value)}></input>
+</div>
+<div id="boxBooks">
+    {{#if Books}}
+        {{#each Books}}
+        <div id="book">
+            <button>
+                <img src={{volumeInfo.imageLinks.thumbnail}} alt={{volumeInfo.title}}>
+                <p>{{volumeInfo.title}}</p>
+            </button>
+        </div>
+        {{else}}
+
+        {{/each}}
+    {{else}} 
+        <h2>Pesquise por livros e eles aparecerão aqui!</h2>
+    {{/if}}
 </div>
