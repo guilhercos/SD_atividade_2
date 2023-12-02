@@ -11,7 +11,7 @@ async function renderMain(req, res) {
 
 async function renderBooks(req, res) {
   try {
-    res.render("partials/books", { layout: "main" });
+    res.render("partials/books", { layout: "main", Books: books });
   } catch (err) {
     console.log("ERRO: " + err);
   }
