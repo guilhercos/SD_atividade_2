@@ -8,7 +8,7 @@ async function create(req, res) {
   const month = data.getMonth() + 1;
   const year = data.getFullYear();
   const fullData = `${day}/${month}/${year}`;
-  console.log(fullData);
+
   try {
     new commentModel({
       bookId: newComment.bookId,
