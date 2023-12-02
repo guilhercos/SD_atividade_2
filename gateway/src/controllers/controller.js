@@ -92,6 +92,15 @@ async function createComment(req, res) {
   res.json(axiosComment.data);
 }
 
+async function getComment(req, res) {
+  const id = req.params.id;
+
+  const comment = await axios.get(
+    `http://localhost:5000/apiComment/comment/${id}`
+  );
+  res.json(comment.data);
+}
+
 module.exports = {
   renderMain,
   renderBooks,
@@ -99,4 +108,5 @@ module.exports = {
   isAuthenticated,
   searchBook,
   createComment,
+  getComment,
 };

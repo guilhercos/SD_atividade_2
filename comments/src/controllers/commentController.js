@@ -23,8 +23,9 @@ async function create(req, res) {
   }
 }
 
-async function commentAll(req, res) {
-  const comments = await commentModel.find();
+async function getComment(req, res) {
+  const id = req.params.id;
+  const comments = await commentModel.findOne({ _id: id });
   res.json(comments);
 }
 
@@ -34,4 +35,4 @@ async function deleteComment(req, res) {
   res.json(`foi deletado o comentário do id ${id}`);
 }
 
-module.exports = { create, commentAll, deleteComment };
+module.exports = { create, getComment, deleteComment };

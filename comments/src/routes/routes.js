@@ -6,8 +6,8 @@ router.post("/apiComment/create", (req, res) =>
   commentController.create(req, res)
 );
 
-router.get("/comentarios", (req, res) =>
-  commentController.commentAll(req, res)
+router.get("/apiComment/comment/:id", (req, res) =>
+  commentController.getComment(req, res)
 );
 
 router.delete("/deletar/:id", (req, res) =>
