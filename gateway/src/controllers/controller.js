@@ -77,10 +77,7 @@ async function getBook(req, res) {
   const img = book.volumeInfo.imageLinks.thumbnail;
   const description = book.volumeInfo.description;
 
-  const axiosComment = axios.get(
-    `http://localhost:5000/apiComment/comment/${id}`
-  );
-  const comment = axiosComment.data;
+  const comment = axios.get(`http://localhost:3000/comment/${id}`);
 }
 
 async function createComment(req, res) {
