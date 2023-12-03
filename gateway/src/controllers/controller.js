@@ -10,6 +10,7 @@ async function renderMain(req, res) {
 }
 
 async function renderBooks(req, res) {
+  const books = [];
   try {
     res.render("partials/books", { layout: "main", Books: books });
   } catch (err) {
@@ -39,9 +40,9 @@ async function signin(req, res) {
   }
 }
 
-async function findBook(value) {
+/*async function findBook(value) {
   console.log(value);
-}
+} */
 
 async function isAuthenticated(req, res, next) {
   const { acess_token } = req.cookies;

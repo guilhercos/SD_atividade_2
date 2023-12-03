@@ -1,5 +1,19 @@
 {{>title}}
-<script src="../../controllers/controller.js">
+<script>
+    async function findBook(value){
+        const book = {
+            search: value
+        }
+        await fetch("http://localhost:3000/book", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify(book)
+        }).then(res => res.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error))
+    }
 </script>
 <div id="input">
     <input type="search" oninput={findBook(value)}></input>
