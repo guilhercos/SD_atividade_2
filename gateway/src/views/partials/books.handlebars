@@ -11,26 +11,43 @@
             },
             body: JSON.stringify(book)
         }).then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            let book = data.books
+            const pai = document.body
+            const boxBooks = document.getElementById("boxBooks")
+            if(boxBooks){
+                pai.removeChild(boxBooks)
+                const h2 = document.createElement("h2")
+                h2.innerHTML = "Pesquise por livros e eles aparecerão aqui!"
+                pai.appendChild(h2)
+            }
+
+            book.forEach((livro) => {
+                let boxBooks = document.getElementById("boxBooks")
+                if(!boxBooks){
+                    boxBooks = document.createElement("div")
+                    boxBooks.id = "boxBooks"
+                    document.body.appendChild(boxBooks)
+                }
+                let book = document.createElement("div")
+                book.id = "book"
+                boxBooks.appendChild(book)
+                let button = document.createElement("button")
+                book.appendChild(button)
+                let img = document.createElement("img")
+                img.src = livro.volumeInfo.imageLinks.thumbnail
+                button.appendChild(img)
+                let title = document.createElement("p")
+                title.innerHTML = livro.volumeInfo.title
+                button.appendChild(title)
+            })
+        })
         .catch(error => console.log(error))
     }
 </script>
 <div id="input">
     <input type="search" oninput={findBook(value)}></input>
 </div>
-<div id="boxBooks">
-    {{#if Books}}
-        {{#each Books}}
-        <div id="book">
-            <button>
-                <img src={{volumeInfo.imageLinks.thumbnail}} alt={{volumeInfo.title}}>
-                <p>{{volumeInfo.title}}</p>
-            </button>
-        </div>
-        {{else}}
 
-        {{/each}}
-    {{else}} 
-        <h2>Pesquise por livros e eles aparecerão aqui!</h2>
-    {{/if}}
+<div id="boxBooks">
 </div>
