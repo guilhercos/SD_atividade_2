@@ -8,6 +8,7 @@ router.get("/book", controller.isAuthenticated, (req, res) =>
   controller.renderBooks(req, res)
 );
 router.post("/book", (req, res) => controller.searchBook(req, res));
+router.post("/bookFound", (req, res) => controller.renderBooks(req, res));
 router.post("/createComment", (req, res) => controller.createComment(req, res));
 router.get("/comment/:id", (req, res) => controller.getComment(req, res));
 
