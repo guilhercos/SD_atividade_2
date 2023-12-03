@@ -1,4 +1,10 @@
 {{>title}}
+<div id="input">
+    <input type="search" oninput={findBook(value)}></input>
+</div>
+
+<div id="boxBooks"></div>
+
 <script>
     async function findBook(value){
         const book = {
@@ -12,42 +18,48 @@
             body: JSON.stringify(book)
         }).then(res => res.json())
         .then(data => {
-            let book = data.books
-            const pai = document.body
-            const boxBooks = document.getElementById("boxBooks")
-            if(boxBooks){
-                pai.removeChild(boxBooks)
-                const h2 = document.createElement("h2")
-                h2.innerHTML = "Pesquise por livros e eles aparecerão aqui!"
-                pai.appendChild(h2)
-            }
+            let book = data.books;
+            clearBooks();
 
             book.forEach((livro) => {
-                let boxBooks = document.getElementById("boxBooks")
+                let boxBooks = document.getElementById("boxBooks");
                 if(!boxBooks){
-                    boxBooks = document.createElement("div")
-                    boxBooks.id = "boxBooks"
-                    document.body.appendChild(boxBooks)
+                    boxBooks = document.createElement("div");
+                    boxBooks.id = "boxBooks";
+                    document.body.appendChild(boxBooks);
                 }
-                let book = document.createElement("div")
-                book.id = "book"
-                boxBooks.appendChild(book)
-                let button = document.createElement("button")
-                book.appendChild(button)
-                let img = document.createElement("img")
-                img.src = livro.volumeInfo.imageLinks.thumbnail
-                button.appendChild(img)
-                let title = document.createElement("p")
-                title.innerHTML = livro.volumeInfo.title
-                button.appendChild(title)
+                let book = document.createElement("div");
+                book.id = "book";
+                boxBooks.appendChild(book);
+                let button = document.createElement("button");
+                book.appendChild(button);
+                let img = document.createElement("img");
+                img.src = livro.volumeInfo.imageLinks.thumbnail;
+                button.appendChild(img);
+                let title = document.createElement("p");
+                title.innerHTML = livro.volumeInfo.title;
+                button.appendChild(title);
             })
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log(error));
     }
+    async function clearBooks(){
+        const pai = document.body;
+        const boxBooks = document.getElementById("boxBooks");
+        if(boxBooks){
+            pai.removeChild(boxBooks);
+        }
+    }
+    async function message(){
+        const boxBooks = document.getElementById("boxBooks");
+        const book = document.getElementById("book");
+        const h2 = document.getElementById("h2");
+        if(!book || !h2){
+            const h2 = document.createElement("h2");
+            h2.id = "h2";
+            h2.innerHTML = "Pesquise por livros e eles aparecerão aqui!";
+            boxBooks.appendChild(h2);
+        }
+    }
+    message();
 </script>
-<div id="input">
-    <input type="search" oninput={findBook(value)}></input>
-</div>
-
-<div id="boxBooks">
-</div>
