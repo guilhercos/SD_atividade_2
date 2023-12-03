@@ -10,7 +10,7 @@ async function renderMain(req, res) {
 }
 
 async function renderBooks(req, res) {
-  const books = [];
+  const { books } = req.body;
   try {
     res.render("partials/books", { layout: "main", Books: books });
   } catch (err) {
