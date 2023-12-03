@@ -28,9 +28,18 @@
                     boxBooks.id = "boxBooks";
                     document.body.appendChild(boxBooks);
                 }
+                let form = document.createElement("form")
+                form.action = "/getBook"
+                form.method = "POST"
+                boxBooks.appendChild(form)
+                const input = document.createElement("input")
+                input.setAttribute("type", "hidden")
+                input.setAttribute("name", "livro")
+                input.setAttribute("value", JSON.stringify(livro))
+                form.appendChild(input)
                 let book = document.createElement("div");
                 book.id = "book";
-                boxBooks.appendChild(book);
+                form.appendChild(book);
                 let button = document.createElement("button");
                 book.appendChild(button);
                 let img = document.createElement("img");

@@ -40,10 +40,6 @@ async function signin(req, res) {
   }
 }
 
-/*async function findBook(value) {
-  console.log(value);
-} */
-
 async function isAuthenticated(req, res, next) {
   const { acess_token } = req.cookies;
 
@@ -71,6 +67,20 @@ async function searchBook(req, res) {
   });
 
   res.json(book.data);
+}
+
+async function getBook(req, res) {
+  const { livro } = req.body;
+  const book = JSON.parse(livro);
+  const id = book.id;
+  const title = book.volumeInfo.title;
+  const img = book.volumeInfo.imageLinks.thumbnail;
+  const description = book.volumeInfo.description;
+
+  const axiosComment = axios.get(
+    `http://localhost:5000/apiComment/comment/${id}`
+  );
+  const comment = axiosComment.data;
 }
 
 async function createComment(req, res) {
@@ -110,4 +120,5 @@ module.exports = {
   searchBook,
   createComment,
   getComment,
+  getBook,
 };

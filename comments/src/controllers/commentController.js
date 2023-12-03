@@ -25,7 +25,7 @@ async function create(req, res) {
 
 async function getComment(req, res) {
   const id = req.params.id;
-  const comments = await commentModel.findOne({ _id: id });
+  const comments = await commentModel.find({ bookId: id });
   res.json(comments);
 }
 
