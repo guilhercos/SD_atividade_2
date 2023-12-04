@@ -34,8 +34,8 @@
                 boxBooks.appendChild(form)
                 const input = document.createElement("input")
                 input.setAttribute("type", "hidden")
-                input.setAttribute("name", "livro")
-                input.setAttribute("value", JSON.stringify(livro))
+                input.setAttribute("name", "bookId")
+                input.setAttribute("value", livro.id)
                 form.appendChild(input)
                 let book = document.createElement("div");
                 book.id = "book";

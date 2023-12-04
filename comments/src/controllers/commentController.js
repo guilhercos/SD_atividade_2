@@ -1,8 +1,7 @@
 const { comment: commentModel } = require("../models/comment");
 
 async function create(req, res) {
-  const { newComment } = req.body;
-
+  const comment = req.body.newComment;
   const data = new Date();
   const day = data.getDate();
   const month = data.getMonth() + 1;
@@ -11,9 +10,9 @@ async function create(req, res) {
 
   try {
     new commentModel({
-      bookId: newComment.bookId,
-      content: newComment.content,
-      user: newComment.user,
+      bookId: comment.bookId,
+      content: comment.content,
+      user: comment.user.name,
       date: fullData,
     })
       .save()

@@ -70,26 +70,29 @@ async function searchBook(req, res) {
 }
 
 async function getBook(req, res) {
-  const { livro } = req.body;
-  const book = JSON.parse(livro);
-  const id = book.id;
-  const title = book.volumeInfo.title;
-  const img = book.volumeInfo.imageLinks.thumbnail;
-  const description = book.volumeInfo.description;
+  const bookId = req.body.bookId;
+  let book = await axios.get(
+    `https://www.googleapis.com/books/v1/volumes/${bookId}`
+  );
+  const id = book.data.id;
+  const title = book.data.volumeInfo.title;
+  const img = book.data.volumeInfo.imageLinks.thumbnail;
+  const description = book.data.volumeInfo.description;
 
-  const comment = axios.get(`http://localhost:3000/comment/${id}`);
+  const comment = await axios.get(`http://localhost:3000/comment/${id}`);
   res.render("partials/detailBook", {
     layout: "main",
     Title: title,
     Img: img,
     Sinopse: description,
-    Comment: comment,
+    Id: id,
+    Comment: comment.data,
   });
 }
 
 async function createComment(req, res) {
-  const { content, bookId } = req.body;
-
+  const bookId = req.body.bookId;
+  const content = req.body.content;
   const user = req.session.user;
 
   const newComment = {
@@ -104,7 +107,7 @@ async function createComment(req, res) {
       newComment,
     }
   );
-  res.json(axiosComment.data);
+  res.redirect("/");
 }
 
 async function getComment(req, res) {
