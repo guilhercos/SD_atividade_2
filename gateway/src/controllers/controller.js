@@ -74,12 +74,12 @@ async function getBook(req, res) {
   const bookId = req.params.bookId;
   const maxResult = 1;
   let book = await axios.get(
-    `https://www.googleapis.com/books/v1/volumes?q=${bookId}&maxResults=${maxResult}`
+    `https://www.googleapis.com/books/v1/volumes/${bookId}`
   );
-  const id = book.data.items[0].id;
-  const title = book.data.items[0].volumeInfo.title;
-  const img = book.data.items[0].volumeInfo.imageLinks.thumbnail;
-  const description = book.data.items[0].volumeInfo.description;
+  const id = book.data.id;
+  const title = book.data.volumeInfo.title;
+  const img = book.data.volumeInfo.imageLinks.thumbnail;
+  const description = book.data.volumeInfo.description;
 
   const comment = await axios.get(`http://localhost:3000/comment/${id}`);
   res.render("partials/detailBook", {
