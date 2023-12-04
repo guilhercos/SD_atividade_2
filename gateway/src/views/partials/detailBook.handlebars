@@ -13,8 +13,8 @@
         <div>
             <h4>COMENTÁRIOS</h4>
             <form action="/createComment" method="POST">
-                <input type="hidden" value={{id}}>
-                <input type="text">
+                <input type="hidden" name="bookId" value="{{Id}}">
+                <input type="text" name="content">
                 <button type="submit">Comentar</button>
             </form>
             <div>
