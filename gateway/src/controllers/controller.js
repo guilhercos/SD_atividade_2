@@ -78,7 +78,13 @@ async function getBook(req, res) {
   const description = book.volumeInfo.description;
 
   const comment = axios.get(`http://localhost:3000/comment/${id}`);
-  res.render("partials/book");
+  res.render("partials/detailBook", {
+    layout: "main",
+    Title: title,
+    Img: img,
+    Sinopse: description,
+    Comment: comment,
+  });
 }
 
 async function createComment(req, res) {
