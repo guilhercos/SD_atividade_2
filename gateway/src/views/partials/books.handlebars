@@ -29,8 +29,8 @@
                     document.body.appendChild(boxBooks);
                 }
                 let form = document.createElement("form")
-                form.action = "/getBook"
-                form.method = "POST"
+                form.action = `/getBook/${livro.id}`
+                form.method = "GET"
                 boxBooks.appendChild(form)
                 const input = document.createElement("input")
                 input.setAttribute("type", "hidden")

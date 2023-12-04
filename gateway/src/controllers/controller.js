@@ -70,7 +70,7 @@ async function searchBook(req, res) {
 }
 
 async function getBook(req, res) {
-  const bookId = req.body.bookId;
+  const bookId = req.params.bookId;
   let book = await axios.get(
     `https://www.googleapis.com/books/v1/volumes/${bookId}`
   );
@@ -107,7 +107,7 @@ async function createComment(req, res) {
       newComment,
     }
   );
-  res.redirect("/");
+  res.redirect(`/getBook/${bookId}`);
 }
 
 async function getComment(req, res) {
