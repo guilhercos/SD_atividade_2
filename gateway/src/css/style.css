@@ -50,6 +50,7 @@ input{
     align-items: center;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 #book button img{
     width: 128px;
@@ -106,6 +107,7 @@ h2{
     letter-spacing: -5%;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 #boxDetailBook{
     display: flex;
