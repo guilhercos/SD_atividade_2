@@ -1,0 +1,27 @@
+<h1 id="detailTitle">BooksAPI</h1>
+<h2 id="titleBook">{{Title}}</h2>
+<div id="buttonReturn"><button onclick="window.history.back()">< Voltar a busca</button></div>
+<div id="boxDetailBook">
+    <div>
+        <img src={{Img}} alt="capa">
+    </div>
+    <div>
+        <div>
+            <h4>SINOPSE</h4>
+            <p>{{Sinopse}}</p>
+        </div>
+        <div>
+            <h4>COMENTÁRIOS</h4>
+            <input type="text">
+            <button>Comentar</button>
+            <div>
+                {{#each Comment}}
+                <div>
+                    <p>{{date}}. {{user}}<span>. {{content}}</span></p>
+                </div>
+                {{else}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
