@@ -10,10 +10,13 @@ router.get("/book", controller.isAuthenticated, (req, res) =>
 router.post("/book", (req, res) => controller.searchBook(req, res));
 router.post("/bookFound", (req, res) => controller.renderBooks(req, res));
 
-//router.post("/getBook", (req, res) => controller.getBook(req, res));
-router.get("/getBook/:bookId", (req, res) => controller.getBook(req, res));
+router.get("/getBook/:bookId", controller.isAuthenticated, (req, res) =>
+  controller.getBook(req, res)
+);
 
 router.post("/createComment", (req, res) => controller.createComment(req, res));
-router.get("/comment/:id", (req, res) => controller.getComment(req, res));
+router.get("/comment/:id", controller.isAuthenticated, (req, res) =>
+  controller.getComment(req, res)
+);
 
 module.exports = router;
