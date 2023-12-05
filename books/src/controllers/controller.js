@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
 const axios = require("axios");
 const key = "AIzaSyBoyfcflN2j42ZWV11hUOqnJz7B0PVqu1Q";
+require("dotenv").config();
 
 async function signin(req, res) {
   const { credential } = req.body;
@@ -9,12 +10,13 @@ async function signin(req, res) {
   const user = await userGoogle(credential);
 
   try {
+    const secret = process.env.SECRET;
     const token = jwt.sign(
       {
         id: user.sub,
         expiresIn: 3600,
       },
-      "secret"
+      secret
     );
     const tokenBearer = `Bearrer ${token}`;
     req.session.user = user;
@@ -45,7 +47,7 @@ async function isAuthenticated(req, res, next) {
   if (acess_token && req.session.user) {
     try {
       const [, token] = acess_token.split(" ");
-      await jwt.verify(token, "secret");
+      await jwt.verify(token, process.env.SECRET);
 
       return next();
     } catch (err) {

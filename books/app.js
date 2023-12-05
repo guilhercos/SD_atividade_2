@@ -4,13 +4,14 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const routes = require("./src/routes/routes");
+require("dotenv").config();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   session({
-    secret: "dsaddssd",
+    secret: process.env.SECRET,
     name: "sessionId",
     resave: false,
     saveUninitialized: true,

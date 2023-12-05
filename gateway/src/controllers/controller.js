@@ -1,6 +1,6 @@
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
-const key = "AIzaSyBoyfcflN2j42ZWV11hUOqnJz7B0PVqu1Q";
+require("dotenv").config();
 
 async function renderMain(req, res) {
   try {
@@ -47,7 +47,7 @@ async function isAuthenticated(req, res, next) {
   if (acess_token && req.session.user) {
     try {
       const [, token] = acess_token.split(" ");
-      await jwt.verify(token, "secret");
+      await jwt.verify(token, process.env.SECRET);
 
       return next();
     } catch (err) {
@@ -72,7 +72,6 @@ async function searchBook(req, res) {
 
 async function getBook(req, res) {
   const bookId = req.params.bookId;
-  const maxResult = 1;
   let book = await axios.get(
     `https://www.googleapis.com/books/v1/volumes/${bookId}`
   );

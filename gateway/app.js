@@ -4,6 +4,7 @@ const { handlebars, engine } = require("express-handlebars");
 const routes = require("./src/routes/routes");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+require("dotenv").config();
 
 app.use(express.static("./src"));
 app.use(express.urlencoded({ extended: true }));
@@ -11,7 +12,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   session({
-    secret: "dsaddssd",
+    secret: process.env.SECRET,
     name: "sessionId",
     resave: false,
     saveUninitialized: true,
