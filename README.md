@@ -23,7 +23,8 @@ SECRET = "uma chave aleatória aqui."
 ```
 
 > [!TIP]
-> Recomendamos uma mescla de letras e números para a chave aleatória.
+> Lembre-se: as duas chaves devem ser idênticas, então vale um ctrl + c e ctrl + v de uma para outra.
+> Recomendamos uma mescla de letras e números para o valor da chave aleatória.
 
 
 **3. Inicie seu container mongo no Docker.**
