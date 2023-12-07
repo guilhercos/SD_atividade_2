@@ -15,11 +15,22 @@
 ```
 cd books/; npm i; cd ..; cd comments/; npm i; cd ..;cd gateway/; npm i; cd ..
 ```
-**2. Inicie seu container mongo no Docker.**
 
-**3. Abra 3 terminais na pasta raiz.**
+**2. Crie um arquivo .env na raiz das APIs de Books e Gateway contendo o seguinte valor:**
 
-**4. Execute cada api em terminais diferentes:**
+```
+SECRET = "uma chave aleatória aqui."
+```
+
+> [!TIP]
+> Recomendamos uma mescla de letras e números para a chave aleatória.
+
+
+**3. Inicie seu container mongo no Docker.**
+
+**4. Abra 3 terminais na pasta raiz.**
+
+**5. Execute cada api em terminais diferentes:**
 
 ##### API Books
 
@@ -39,7 +50,7 @@ cd comments/; npm start
 cd gateway/; npm start
 ```
 
-**5. Vá para a seguinte URL em seu navegador:**
+**6. Vá para a seguinte URL em seu navegador:**
 
 ```
 http://localhost:3000/
@@ -54,3 +65,7 @@ http://localhost:3000/
 ###### Ao clicar em um livro, você será redirecionado para a página de detalhamento do livro.
 
 ###### É possível ainda fazer comentários atrelados àquele livro na seção de comentários logo abaixo da sinopse.
+
+#### Desenvolvido por:
+
+[Guilherme Costa](https://github.com/guilhercos) & [Leonardo Mendes](https://github.com/leomendes18)
